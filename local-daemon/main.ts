@@ -3,9 +3,10 @@ import publicIp from 'public-ip';
 import cron from 'cron';
 
 const access_token = process.env.ACCESS_TOKEN;
+const proxyUrl = process.env.PROXY_URL;
 
 const defaultOptions = {
-    uri: 'http://localhost:3000/transmission-url',
+    uri: proxyUrl,
     json: true
 }
 
