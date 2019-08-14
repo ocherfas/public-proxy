@@ -21,6 +21,6 @@ async function runOnce(){
     await request.post(requestOptions);
 }
 
-const cronJob = new cron.CronJob('* * * * * *', runOnce);
+const cronJob = new cron.CronJob('*/5 * * * * *', runOnce);
 
 cronJob.start();
