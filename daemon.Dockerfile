@@ -6,4 +6,4 @@ COPY tsconfig.json ./
 COPY local-daemon ./local-daemon
 RUN npm install
 
-ENTRYPOINT ["npm", "run", "daemon"]
+CMD ["npm", "run", "daemon"]

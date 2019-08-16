@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "proxy:dev": "SECRET=secret ts-node-dev proxy/main.ts",
-    "daemon:dev": "PROXY_URL=http://localhost:3000/transmission-url ACCESS_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3MmE0MDYwZS04MWFkLTRkYmYtOTc3YS1iODY4NzNiMTI5YjIiLCJpYXQiOjE1NjU4MDI2NjMsImV4cCI6MTU2NTgwNjI2M30.MHyv74wch83lGX4t15ZAReSX2Ubc3oJkAJfffutndBE ts-node-dev local-daemon/main.ts",
+    "proxy:dev": "API_KEY=test ts-node-dev proxy/main.ts",
+    "daemon:dev": "PROXY_URL=http://localhost:3000/transmission-url ACCESS_TOKEN=test ts-node-dev local-daemon/main.ts",
     "proxy": "ts-node proxy/main.ts",
     "daemon": "ts-node local-daemon/main.ts"
   },
@@ -21,14 +21,13 @@
   "dependencies": {
     "@types/cron": "^1.7.1",
     "@types/express": "^4.17.0",
-    "@types/express-jwt": "0.0.42",
     "@types/http-proxy-middleware": "^0.19.2",
     "@types/lodash": "^4.14.136",
     "@types/public-ip": "^3.1.0",
     "@types/request-promise": "^4.1.44",
     "cron": "^1.7.1",
     "express": "^4.17.1",
-    "express-jwt": "^5.3.1",
+    "express-bearer-token": "^2.4.0",
     "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.15",
     "public-ip": "^3.2.0",

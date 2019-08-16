@@ -7,4 +7,4 @@ COPY proxy ./proxy
 RUN npm install
 EXPOSE 3000
 
-ENTRYPOINT ["npm", "run", "proxy"]
+CMD ["npm", "run", "proxy"]

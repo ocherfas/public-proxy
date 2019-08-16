@@ -1,13 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import get from 'lodash/get'
-import expressJWT from 'express-jwt';
+const bearerToken = require('express-bearer-token');
 
 import proxy from 'http-proxy-middleware';
+import { NextFunction } from 'connect';
 
 const app = express();
 
-const secret = process.env.SECRET;
+const apiKey = process.env.API_KEY;
+const port = process.env.PORT ? process.env.PORT : 3000;
 
 let ipAddress;
 
@@ -23,11 +25,21 @@ app.use('/transmission', (req, res, next) => {
     }
 });
 
-app.post('/transmission-url', expressJWT({secret: secret}), bodyParser.json(), (req, res) => {
+const apiKeyAuthentication = (req: express.Request, res: express.Response, next: NextFunction) => { 
+    const token = (req as any).token;
+    if(token !== apiKey){
+        res.sendStatus(403);
+    }
+    else {
+        next();
+    }
+}
+
+app.post('/transmission-url', bearerToken(), apiKeyAuthentication, bodyParser.json(), (req, res) => {
     const address = get(req, 'body.address', ipAddress);
     ipAddress = address;
     console.log(`updated address to ${ipAddress}`);
     res.sendStatus(201);
 })
 
-app.listen(3000);
+app.listen(port);
